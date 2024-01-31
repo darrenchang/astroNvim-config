@@ -10,7 +10,7 @@ local sections = {
   f = { desc = get_icon("Search", 1, true) .. "Find" },
   p = { desc = get_icon("Package", 1, true) .. "Packages" },
   l = { desc = get_icon("ActiveLSP", 1, true) .. "LSP" },
-  u = { desc = get_icon("Window", 1, true) .. "UI/UX" },
+  x = { desc = get_icon("Window", 1, true) .. "UI/UX" },
   b = { desc = get_icon("Tab", 1, true) .. "Buffers" },
   bs = { desc = get_icon("Sort", 1, true) .. "Sort Buffers" },
   d = { desc = get_icon("Debugger", 1, true) .. "Debugger" },
@@ -133,6 +133,14 @@ if is_available "alpha-nvim" then
       require("alpha").start(false)
     end,
     desc = "Home Screen",
+  }
+end
+
+-- Undotree
+if is_available "undotree" then 
+  maps.n["<leader>u"] = {
+    function() vim.cmd.UndotreeToggle() end,
+    desc = "UndoTree",
   }
 end
 
@@ -403,8 +411,7 @@ if is_available "nvim-dap" then
     maps.n["<leader>dE"] = {
       function()
         vim.ui.input({ prompt = "Expression: " }, function(expr)
-          if expr then require("dapui").eval(expr, { enter = true }) end
-        end)
+          if expr then require("dapui").eval(expr, { enter = true }) end end)
       end,
       desc = "Evaluate Input",
     }
@@ -433,28 +440,28 @@ maps.t["<C-j>"] = { "<cmd>wincmd j<cr>", desc = "Terminal down window navigation
 maps.t["<C-k>"] = { "<cmd>wincmd k<cr>", desc = "Terminal up window navigation" }
 maps.t["<C-l>"] = { "<cmd>wincmd l<cr>", desc = "Terminal right window navigation" }
 
-maps.n["<leader>u"] = sections.u
+maps.n["<leader>x"] = sections.x
 -- Custom menu for modification of the user experience
-if is_available "nvim-autopairs" then maps.n["<leader>ua"] = { ui.toggle_autopairs, desc = "Toggle autopairs" } end
-maps.n["<leader>ub"] = { ui.toggle_background, desc = "Toggle background" }
-if is_available "nvim-cmp" then maps.n["<leader>uc"] = { ui.toggle_cmp, desc = "Toggle autocompletion" } end
+if is_available "nvim-autopairs" then maps.n["<leader>xa"] = { ui.toggle_autopairs, desc = "Toggle autopairs" } end
+maps.n["<leader>xb"] = { ui.toggle_background, desc = "Toggle background" }
+if is_available "nvim-cmp" then maps.n["<leader>xc"] = { ui.toggle_cmp, desc = "Toggle autocompletion" } end
 if is_available "nvim-colorizer.lua" then
-  maps.n["<leader>uC"] = { "<cmd>ColorizerToggle<cr>", desc = "Toggle color highlight" }
+  maps.n["<leader>xC"] = { "<cmd>ColorizerToggle<cr>", desc = "Toggle color highlight" }
 end
-maps.n["<leader>ud"] = { ui.toggle_diagnostics, desc = "Toggle diagnostics" }
-maps.n["<leader>ug"] = { ui.toggle_signcolumn, desc = "Toggle signcolumn" }
-maps.n["<leader>ui"] = { ui.set_indent, desc = "Change indent setting" }
-maps.n["<leader>ul"] = { ui.toggle_statusline, desc = "Toggle statusline" }
-maps.n["<leader>uL"] = { ui.toggle_codelens, desc = "Toggle CodeLens" }
-maps.n["<leader>un"] = { ui.change_number, desc = "Change line numbering" }
-maps.n["<leader>uN"] = { ui.toggle_ui_notifications, desc = "Toggle Notifications" }
-maps.n["<leader>up"] = { ui.toggle_paste, desc = "Toggle paste mode" }
-maps.n["<leader>us"] = { ui.toggle_spell, desc = "Toggle spellcheck" }
-maps.n["<leader>uS"] = { ui.toggle_conceal, desc = "Toggle conceal" }
-maps.n["<leader>ut"] = { ui.toggle_tabline, desc = "Toggle tabline" }
-maps.n["<leader>uu"] = { ui.toggle_url_match, desc = "Toggle URL highlight" }
-maps.n["<leader>uw"] = { ui.toggle_wrap, desc = "Toggle wrap" }
-maps.n["<leader>uy"] = { ui.toggle_syntax, desc = "Toggle syntax highlighting (buffer)" }
-maps.n["<leader>uh"] = { ui.toggle_foldcolumn, desc = "Toggle foldcolumn" }
+maps.n["<leader>xd"] = { ui.toggle_diagnostics, desc = "Toggle diagnostics" }
+maps.n["<leader>xg"] = { ui.toggle_signcolumn, desc = "Toggle signcolumn" }
+maps.n["<leader>xi"] = { ui.set_indent, desc = "Change indent setting" }
+maps.n["<leader>xl"] = { ui.toggle_statusline, desc = "Toggle statusline" }
+maps.n["<leader>xL"] = { ui.toggle_codelens, desc = "Toggle CodeLens" }
+maps.n["<leader>xn"] = { ui.change_number, desc = "Change line numbering" }
+maps.n["<leader>xN"] = { ui.toggle_ui_notifications, desc = "Toggle Notifications" }
+maps.n["<leader>xp"] = { ui.toggle_paste, desc = "Toggle paste mode" }
+maps.n["<leader>xs"] = { ui.toggle_spell, desc = "Toggle spellcheck" }
+maps.n["<leader>xS"] = { ui.toggle_conceal, desc = "Toggle conceal" }
+maps.n["<leader>xt"] = { ui.toggle_tabline, desc = "Toggle tabline" }
+maps.n["<leader>xu"] = { ui.toggle_url_match, desc = "Toggle URL highlight" }
+maps.n["<leader>xw"] = { ui.toggle_wrap, desc = "Toggle wrap" }
+maps.n["<leader>xy"] = { ui.toggle_syntax, desc = "Toggle syntax highlighting (buffer)" }
+maps.n["<leader>xh"] = { ui.toggle_foldcolumn, desc = "Toggle foldcolumn" }
 
 utils.set_mappings(astronvim.user_opts("mappings", maps))

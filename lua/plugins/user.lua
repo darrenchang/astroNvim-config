@@ -13,6 +13,11 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
-    event = "VeryLazy",
+    lazy = false,
+  },
+  {
+    "mbbill/undotree",
+    branch = "master",
+    lazy = false,
   },
 }
